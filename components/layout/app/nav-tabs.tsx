@@ -31,7 +31,7 @@ const TabsHelper = (router: NextRouter): { name: string; href: string }[] => {
   // home page (e.g. app.dub.sh, app.dub.sh/settings)
   return [
     { name: "Projects", href: `/` },
-    { name: `{PUBLIC_ROOT_DOMAIN.charAt(0).toUpperCase()}{PUBLIC_ROOT_DOMAIN.slice(1)} Links`, href: `/links` },
+    { name: `${PUBLIC_ROOT_DOMAIN.charAt(0).toUpperCase()}${PUBLIC_ROOT_DOMAIN.slice(1)} Links`, href: `/links` },
     { name: "Settings", href: `/settings` },
   ];
 };
