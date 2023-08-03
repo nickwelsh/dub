@@ -2,7 +2,7 @@ import { addLink, getLinksForProject, processKey } from "#/lib/api/links";
 import { withLinksAuth } from "#/lib/auth";
 import { isBlacklistedDomain, isBlacklistedKey } from "#/lib/edge-config";
 import { getApexDomain, log } from "#/lib/utils";
-import { DUB_PROJECT_ID, GOOGLE_FAVICON_URL } from "#/lib/constants";
+import {DUB_PROJECT_ID, GOOGLE_FAVICON_URL, PUBLIC_ROOT_DOMAIN} from '#/lib/constants'
 
 export const config = {
   api: {
@@ -89,7 +89,7 @@ export default withLinksAuth(
         await log({
           message: `*${
             session.user.email
-          }* created a new link (dub.sh/${key}) for ${url} ${
+          }* created a new link (${PUBLIC_ROOT_DOMAIN}/${key}) for ${url} ${
             invalidFavicon
               ? " but it has an invalid favicon :thinking_face:"
               : ""

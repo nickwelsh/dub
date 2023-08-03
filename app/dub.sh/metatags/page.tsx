@@ -4,6 +4,7 @@ import Background from "#/ui/home/background";
 import LaunchTweet from "./launch";
 import MetatagsContent from "./content";
 import { constructMetadata } from "#/lib/utils";
+import {PUBLIC_ROOT_DOMAIN} from '#/lib/constants'
 
 export const metadata = constructMetadata({
   title: "Metatags API - The Free API to Get Meta Tags from a URL",
@@ -41,7 +42,7 @@ export default function Metatags() {
         <MetatagsContent />
 
         <a
-          href="https://dub.sh/metatags-code"
+          href={`https://${PUBLIC_ROOT_DOMAIN}/metatags-code`}
           target="_blank"
           rel="noreferrer"
           className="mx-auto mt-2 flex items-center justify-center space-x-2 text-sm text-gray-500 transition-all hover:text-black"

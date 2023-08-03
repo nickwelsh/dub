@@ -6,6 +6,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { toast } from "sonner";
+import {PUBLIC_ROOT_DOMAIN} from '#/lib/constants'
 
 export default function PersonalSettings() {
   const { data: session, update } = useSession();
@@ -86,7 +87,7 @@ export default function PersonalSettings() {
         <div className="flex flex-col space-y-3 p-5 sm:p-10">
           <h2 className="text-xl font-medium">Delete Account</h2>
           <p className="text-sm text-gray-500">
-            Permanently delete your Dub account and all of your Dub.sh links +
+            Permanently delete your Dub account and all of your {PUBLIC_ROOT_DOMAIN.charAt(0).toUpperCase()}${PUBLIC_ROOT_DOMAIN.slice(1)} links +
             their stats. This action cannot be undone - please proceed with
             caution.
           </p>

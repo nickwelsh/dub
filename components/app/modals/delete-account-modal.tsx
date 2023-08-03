@@ -11,6 +11,7 @@ import BlurImage from "#/ui/blur-image";
 import Modal from "#/ui/modal";
 import Button from "#/ui/button";
 import { useSession } from "next-auth/react";
+import {PUBLIC_ROOT_DOMAIN} from '#/lib/constants'
 
 function DeleteAccountModal({
   showDeleteAccountModal,
@@ -66,7 +67,7 @@ function DeleteAccountModal({
         />
         <h3 className="text-lg font-medium">Delete Account</h3>
         <p className="text-center text-sm text-gray-500">
-          Warning: This will permanently delete your account and all your Dub.sh
+          Warning: This will permanently delete your account and all your {PUBLIC_ROOT_DOMAIN.charAt(0).toUpperCase()}{PUBLIC_ROOT_DOMAIN.slice(1)}
           links and their respective stats.
         </p>
       </div>

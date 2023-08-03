@@ -30,8 +30,8 @@ import {
   APP_HOSTNAMES,
   FADE_IN_ANIMATION_SETTINGS,
   GOOGLE_FAVICON_URL,
-  HOME_DOMAIN,
-} from "#/lib/constants";
+  HOME_DOMAIN, PUBLIC_ROOT_DOMAIN
+} from '#/lib/constants'
 import { useRouter } from "next/router";
 import { ModalContext } from "#/ui/modal-provider";
 import { motion } from "framer-motion";
@@ -83,7 +83,7 @@ function LinkQRModalHelper({
     () => ({
       value: linkConstructor({
         key: props.key,
-        domain: props.domain || "dub.sh",
+        domain: props.domain || PUBLIC_ROOT_DOMAIN,
       }),
       bgColor: "#ffffff",
       fgColor,
@@ -260,7 +260,7 @@ function AdvancedSettings({
                   thumbTranslate="translate-x-6"
                 />
                 <p className="text-sm text-gray-600">
-                  Show {!slug || (!logo && "Dub.sh")} Logo
+                  Show {!slug || (!logo && PUBLIC_ROOT_DOMAIN)} Logo
                 </p>
               </div>
             ) : (
@@ -293,7 +293,7 @@ function AdvancedSettings({
                     thumbTranslate="translate-x-6"
                     disabled={true}
                   />
-                  <p className="text-sm text-gray-600">Show Dub.sh Logo</p>
+                  <p className="text-sm text-gray-600">Show {PUBLIC_ROOT_DOMAIN.charAt(0).toUpperCase()}{PUBLIC_ROOT_DOMAIN.slice(1)} Logo</p>
                 </div>
               </Tooltip>
             )}
@@ -356,7 +356,7 @@ function QrDropdown({ download, qrData, showLogo, logo }) {
                     ...(showLogo && {
                       imageSettings: {
                         ...qrData.imageSettings,
-                        src: logo || "https://dub.sh/_static/logo.svg",
+                        src: logo || `https://${PUBLIC_ROOT_DOMAIN}/_static/logo.svg`,
                       },
                     }),
                   }),

@@ -22,6 +22,7 @@ import Locations from "./locations";
 import Referer from "./referer";
 import Toggle from "./toggle";
 import { X } from "lucide-react";
+import {PUBLIC_ROOT_DOMAIN} from '#/lib/constants'
 
 export const StatsContext = createContext<{
   basePath: string;
@@ -92,7 +93,7 @@ export default function Stats({
     } else if (key && pathname?.startsWith("/links")) {
       return {
         basePath: `/links/${key}`,
-        domain: "dub.sh",
+        domain: PUBLIC_ROOT_DOMAIN,
         endpoint: `/api/links/${key}/stats`,
       };
     }

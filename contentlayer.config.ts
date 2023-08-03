@@ -5,6 +5,7 @@ import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import GithubSlugger from "github-slugger";
 import { capitalize } from "./lib/utils";
+import {PUBLIC_ROOT_DOMAIN} from './lib/constants'
 
 export const BlogPost = defineDocumentType(() => ({
   name: "BlogPost",
@@ -203,7 +204,7 @@ const computedFields = (type: "blog" | "changelog" | "help" | "legal") => ({
       dateModified: doc.publishedAt,
       description: doc.summary,
       image: doc.image,
-      url: `https://dub.sh/${doc._raw.flattenedPath}`,
+      url: `https://${PUBLIC_ROOT_DOMAIN}/${doc._raw.flattenedPath}`,
       author: {
         "@type": "Person",
         name: doc.author,

@@ -1,4 +1,5 @@
 import { allChangelogPosts } from "contentlayer/generated";
+import {PUBLIC_ROOT_DOMAIN} from '#/lib/constants'
 
 export async function GET() {
   return new Response(
@@ -6,15 +7,15 @@ export async function GET() {
     <feed xmlns="http://www.w3.org/2005/Atom">
         <title>Dub</title>
         <subtitle>Changelog</subtitle>
-        <link href="https://dub.sh/atom" rel="self"/>
-        <link href="https://dub.sh/"/>
+        <link href="https://${PUBLIC_ROOT_DOMAIN}/atom" rel="self"/>
+        <link href="https://${PUBLIC_ROOT_DOMAIN}/"/>
         <updated>${allChangelogPosts[0].publishedAt}</updated>
-        <id>https://dub.sh/</id>${allChangelogPosts.map((post) => {
+        <id>https://${PUBLIC_ROOT_DOMAIN}/</id>${allChangelogPosts.map((post) => {
           return `
         <entry>
-            <id>https://dub.sh/changelog/${post.slug}</id>
+            <id>https://${PUBLIC_ROOT_DOMAIN}/changelog/${post.slug}</id>
             <title>${post.title}</title>
-            <link href="https://dub.sh/changelog/${post.slug}"/>
+            <link href="https://${PUBLIC_ROOT_DOMAIN}/changelog/${post.slug}"/>
             <updated>${post.publishedAt}</updated>
             <author><name>${post.author}</name></author>
         </entry>`;

@@ -6,6 +6,7 @@ import { Github, LinkedIn, Twitter } from "@/components/shared/icons";
 import { useParams } from "next/navigation";
 import MaxWidthWrapper from "@/components/shared/max-width-wrapper";
 import va from "@vercel/analytics";
+import {PUBLIC_ROOT_DOMAIN} from '#/lib/constants'
 
 const navigation = {
   product: [
@@ -24,10 +25,10 @@ const navigation = {
 };
 
 export default function Footer() {
-  const { domain = "dub.sh" } = useParams() as { domain: string };
+  const { domain = PUBLIC_ROOT_DOMAIN } = useParams() as { domain: string };
 
   const createHref = (href: string) =>
-    domain === "dub.sh" ? href : `https://dub.sh${href}`;
+    domain === PUBLIC_ROOT_DOMAIN ? href : `https://${PUBLIC_ROOT_DOMAIN}${href}`;
 
   return (
     <footer className="z-10 border-t border-gray-200 bg-white/50 py-8 backdrop-blur-lg">
@@ -36,7 +37,7 @@ export default function Footer() {
           <div className="space-y-8 xl:col-span-2">
             <Link
               href={createHref("/")}
-              {...(domain !== "dub.sh" && {
+              {...(domain !== PUBLIC_ROOT_DOMAIN && {
                 onClick: () => {
                   va.track("Referred from custom domain", {
                     domain,
@@ -45,7 +46,7 @@ export default function Footer() {
                 },
               })}
             >
-              <span className="sr-only">Dub.sh Logo</span>
+              <span className="sr-only">{PUBLIC_ROOT_DOMAIN.charAt(0).toUpperCase()}{PUBLIC_ROOT_DOMAIN.slice(1)} Logo</span>
               <LogoType className="h-7 text-gray-600" />
             </Link>
             <p className="max-w-xs text-sm text-gray-500">
@@ -93,7 +94,7 @@ export default function Footer() {
                     <li key={item.name}>
                       <Link
                         href={createHref(item.href)}
-                        {...(domain !== "dub.sh" && {
+                        {...(domain !== PUBLIC_ROOT_DOMAIN && {
                           onClick: () => {
                             va.track("Referred from custom domain", {
                               domain,
@@ -116,7 +117,7 @@ export default function Footer() {
                     <li key={item.name}>
                       <Link
                         href={createHref(item.href)}
-                        {...(domain !== "dub.sh" && {
+                        {...(domain !== PUBLIC_ROOT_DOMAIN && {
                           onClick: () => {
                             va.track("Referred from custom domain", {
                               domain,
@@ -143,7 +144,7 @@ export default function Footer() {
                     <li key={item.name}>
                       <Link
                         href={createHref(item.href)}
-                        {...(domain !== "dub.sh" && {
+                        {...(domain !== PUBLIC_ROOT_DOMAIN && {
                           onClick: () => {
                             va.track("Referred from custom domain", {
                               domain,
@@ -166,7 +167,7 @@ export default function Footer() {
                     <li key={item.name}>
                       <Link
                         href={createHref(item.href)}
-                        {...(domain !== "dub.sh" && {
+                        {...(domain !== PUBLIC_ROOT_DOMAIN && {
                           onClick: () => {
                             va.track("Referred from custom domain", {
                               domain,
@@ -187,7 +188,7 @@ export default function Footer() {
         </div>
         <div className="mt-16 border-t border-gray-900/10 pt-8 sm:mt-20 lg:mt-24">
           <p className="text-sm leading-5 text-gray-500">
-            © {new Date().getFullYear()} Dub.sh
+            © {new Date().getFullYear()} {PUBLIC_ROOT_DOMAIN.charAt(0).toUpperCase()}{PUBLIC_ROOT_DOMAIN.slice(1)}
           </p>
         </div>
       </MaxWidthWrapper>

@@ -23,7 +23,7 @@ import { getApexDomain, linkConstructor } from "#/lib/utils";
 import IconMenu from "@/components/shared/icon-menu";
 import Popover from "#/ui/popover";
 import { toast } from "sonner";
-import { GOOGLE_FAVICON_URL } from "#/lib/constants";
+import {GOOGLE_FAVICON_URL, PUBLIC_ROOT_DOMAIN} from '#/lib/constants'
 
 function LinkQRModalHelper({
   showLinkQRModal,
@@ -72,7 +72,7 @@ function LinkQRModalHelper({
     () => ({
       value: linkConstructor({
         key: props.key,
-        domain: props.domain || "dub.sh",
+        domain: props.domain || PUBLIC_ROOT_DOMAIN,
       }),
       bgColor: "#ffffff",
       fgColor,
@@ -226,7 +226,7 @@ function AdvancedSettings({ qrData, setFgColor, showLogo, setShowLogo }) {
                   thumbDimensions="w-5 h-5"
                   thumbTranslate="translate-x-6"
                 />
-                <p className="text-sm text-gray-600">Show Dub.sh Logo</p>
+                <p className="text-sm text-gray-600">Show {PUBLIC_ROOT_DOMAIN.charAt(0).toUpperCase()}{PUBLIC_ROOT_DOMAIN.slice(1)} Logo</p>
               </div>
             ) : (
               <Tooltip
@@ -247,7 +247,7 @@ function AdvancedSettings({ qrData, setFgColor, showLogo, setShowLogo }) {
                     thumbTranslate="translate-x-6"
                     disabled={true}
                   />
-                  <p className="text-sm text-gray-600">Show Dub.sh Logo</p>
+                  <p className="text-sm text-gray-600">Show {PUBLIC_ROOT_DOMAIN.charAt(0).toUpperCase()}{PUBLIC_ROOT_DOMAIN.slice(1)} Logo</p>
                 </div>
               </Tooltip>
             )}
@@ -310,7 +310,7 @@ function QrDropdown({ download, qrData, showLogo, logo }) {
                     ...(showLogo && {
                       imageSettings: {
                         ...qrData.imageSettings,
-                        src: logo || "https://dub.sh/_static/logo.svg",
+                        src: logo || `https://${PUBLIC_ROOT_DOMAIN}/_static/logo.svg`,
                       },
                     }),
                   }),

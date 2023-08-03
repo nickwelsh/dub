@@ -2,7 +2,7 @@ import { withLinksAuth } from "#/lib/auth";
 import { deleteLink, editLink, processKey } from "#/lib/api/links";
 import { isBlacklistedDomain, isBlacklistedKey } from "#/lib/edge-config";
 import { getApexDomain, log } from "#/lib/utils";
-import { GOOGLE_FAVICON_URL } from "#/lib/constants";
+import {GOOGLE_FAVICON_URL, PUBLIC_ROOT_DOMAIN} from '#/lib/constants'
 
 export const config = {
   api: {
@@ -54,11 +54,11 @@ export default withLinksAuth(
           {
             ...req.body,
             key,
-            domain: req.body.domain || "dub.sh",
+            domain: req.body.domain || PUBLIC_ROOT_DOMAIN,
             userId: session.user.id,
           },
           {
-            oldDomain: oldDomain || "dub.sh",
+            oldDomain: oldDomain || PUBLIC_ROOT_DOMAIN,
             oldKey,
           },
         ),
@@ -80,7 +80,7 @@ export default withLinksAuth(
         await log({
           message: `*${
             session.user.email
-          }* edited a link (dub.sh/${key}) to the ${url} ${
+          }* edited a link (${PUBLIC_ROOT_DOMAIN}/${key}) to the ${url} ${
             invalidFavicon
               ? " but it has an invalid favicon :thinking_face:"
               : ""
@@ -93,7 +93,7 @@ export default withLinksAuth(
 
       // DELETE /api/links/:key – delete a link
     } else if (req.method === "DELETE") {
-      const response = await deleteLink(domain || "dub.sh", oldKey);
+      const response = await deleteLink(domain || PUBLIC_ROOT_DOMAIN, oldKey);
       return res.status(200).json(response);
     } else {
       res.setHeader("Allow", ["GET", "PUT", "DELETE"]);

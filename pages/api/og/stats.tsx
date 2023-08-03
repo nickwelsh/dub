@@ -2,7 +2,7 @@ import { ImageResponse, NextRequest } from "next/server";
 import { getLinkViaEdge } from "#/lib/planetscale";
 import { getStats } from "#/lib/stats";
 import { nFormatter, truncate } from "#/lib/utils";
-import { DUB_LOGO } from "#/lib/constants";
+import {DUB_LOGO, PUBLIC_ROOT_DOMAIN} from '#/lib/constants'
 
 export const runtime = "edge";
 export const contentType = "image/png";
@@ -21,7 +21,7 @@ export default async function handler(req: NextRequest) {
     satoshiBold,
   ]);
 
-  const domain = req.nextUrl.searchParams.get("domain") || "dub.sh";
+  const domain = req.nextUrl.searchParams.get("domain") || PUBLIC_ROOT_DOMAIN;
   const key = req.nextUrl.searchParams.get("key") || "github";
 
   const data = await getLinkViaEdge(domain, key);
@@ -51,7 +51,7 @@ export default async function handler(req: NextRequest) {
           flexDirection: "column",
           alignItems: "center",
           backgroundColor: "white",
-          backgroundImage: `url(https://dub.sh/_static/background.png)`,
+          backgroundImage: `url(https://${PUBLIC_ROOT_DOMAIN}/_static/background.png)`,
         }}
       >
         <img

@@ -7,6 +7,7 @@ import EmailProvider from "next-auth/providers/email";
 import GoogleProvider from "next-auth/providers/google";
 import prisma from "#/lib/prisma";
 import { isBlacklistedEmail } from "#/lib/edge-config";
+import {PUBLIC_ROOT_DOMAIN} from '#/lib/constants'
 
 const VERCEL_DEPLOYMENT = !!process.env.VERCEL_URL;
 
@@ -42,7 +43,7 @@ export const authOptions: NextAuthOptions = {
         sameSite: "lax",
         path: "/",
         // When working on localhost, the cookie domain must be omitted entirely (https://stackoverflow.com/a/1188145)
-        domain: VERCEL_DEPLOYMENT ? ".dub.sh" : undefined,
+        domain: VERCEL_DEPLOYMENT ? `.${PUBLIC_ROOT_DOMAIN}` : undefined,
         secure: VERCEL_DEPLOYMENT,
       },
     },
@@ -121,7 +122,7 @@ export const authOptions: NextAuthOptions = {
           new Date(user.createdAt).getTime() > Date.now() - 10000
         ) {
           sendEmail({
-            subject: "Welcome to Dub.sh!",
+            subject: `Welcome to {PUBLIC_ROOT_DOMAIN.charAt(0).toUpperCase()}{PUBLIC_ROOT_DOMAIN.slice(1)}!`,
             email,
             react: WelcomeEmail({
               email,

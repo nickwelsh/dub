@@ -12,6 +12,7 @@ import { LoadingCircle } from "#/ui/icons";
 import Badge from "#/ui/badge";
 import Cookies from "js-cookie";
 import { ModalContext } from "#/ui/modal-provider";
+import {PUBLIC_ROOT_DOMAIN} from '#/lib/constants'
 
 const latestChangelogId = "read-changelog-0715";
 
@@ -98,7 +99,7 @@ export default function UserDropdown() {
               />
             </Link>
             <Link
-              href="https://dub.sh/changelog"
+              href={`https://${PUBLIC_ROOT_DOMAIN}/changelog`}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => Cookies.set(latestChangelogId, true)}

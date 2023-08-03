@@ -8,6 +8,7 @@ import { LoadingCircle } from "#/ui/icons";
 import { fetcher, getDomainWithoutWWW, getUrlFromString } from "#/lib/utils";
 import { toast } from "sonner";
 import { useRouter, useSearchParams } from "next/navigation";
+import {PUBLIC_ROOT_DOMAIN} from '#/lib/constants'
 
 export default function MetatagsContent() {
   const router = useRouter();
@@ -106,7 +107,7 @@ export default function MetatagsContent() {
         className="hover:bg/black-[0.08] group relative flex cursor-copy items-center space-x-5 rounded-full bg-black/5 py-2.5 pl-5 pr-3 transition-all"
         onClick={() => {
           navigator.clipboard.writeText(
-            `https://api.dub.sh/metatags?url=${getUrlFromString(url)}`,
+            `https://api.${PUBLIC_ROOT_DOMAIN}/metatags?url=${getUrlFromString(url)}`,
           );
           setCopied(true);
           toast.success("Copied URL to clipboard!");
@@ -117,7 +118,7 @@ export default function MetatagsContent() {
       >
         <div className="w-11/12 overflow-scroll scrollbar-hide">
           <p className="whitespace-nowrap text-sm font-medium text-gray-600">
-            https://api.dub.sh/metatags?url=
+            https://api.${PUBLIC_ROOT_DOMAIN}/metatags?url=
             <span className="text-amber-600">{getUrlFromString(url)}</span>
           </p>
         </div>

@@ -1,6 +1,7 @@
 import { ImageResponse, NextRequest } from "next/server";
 import { allChangelogPosts } from "contentlayer/generated";
 import { formatDate } from "#/lib/utils";
+import {PUBLIC_ROOT_DOMAIN} from '#/lib/constants'
 
 export const runtime = "edge";
 export const contentType = "image/png";
@@ -40,7 +41,7 @@ export default async function handler() {
         }}
       >
         <img
-          src="https://dub.sh/_static/logotype.png"
+          src={`https://${PUBLIC_ROOT_DOMAIN}/_static/logotype.png`}
           style={{
             height: "40px",
             position: "absolute",

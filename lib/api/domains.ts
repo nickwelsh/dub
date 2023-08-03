@@ -2,6 +2,7 @@ import prisma from "#/lib/prisma";
 import { redis } from "#/lib/upstash";
 import cloudinary from "cloudinary";
 import { getApexDomain, validDomainRegex } from "#/lib/utils";
+import {PUBLIC_ROOT_DOMAIN} from '#/lib/constants'
 
 export const validateDomain = async (
   domain: string,
@@ -11,7 +12,7 @@ export const validateDomain = async (
     return "Missing domain";
   }
   const validDomain =
-    validDomainRegex.test(domain) && !domain.endsWith(".dub.sh");
+    validDomainRegex.test(domain) && !domain.endsWith(`.${PUBLIC_ROOT_DOMAIN}`);
 
   if (!validDomain) {
     return "Invalid domain";

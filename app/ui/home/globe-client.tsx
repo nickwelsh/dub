@@ -7,6 +7,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useSpring } from "react-spring";
 import { Drag, X } from "@/components/shared/icons";
 import useIntersectionObserver from "#/lib/hooks/use-intersection-observer";
+import {PUBLIC_ROOT_DOMAIN} from '#/lib/constants'
 
 interface MarkerProps {
   location: [number, number];
@@ -134,11 +135,11 @@ const GlobeAnimation = ({ markers }: { markers: MarkerProps[] }) => {
               This map shows the locations of the last 50 clicks on{" "}
               <a
                 className="font-semibold text-blue-800"
-                href="https://dub.sh/github"
+                href={`https://${PUBLIC_ROOT_DOMAIN}/github`}
                 target="_blank"
                 rel="noreferrer"
               >
-                dub.sh/github
+                ${PUBLIC_ROOT_DOMAIN}/github
               </a>
               .
             </p>

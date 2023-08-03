@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import { getLinkViaEdge } from "#/lib/planetscale";
 import { constructMetadata } from "#/lib/utils";
 import { redis } from "#/lib/upstash";
+import {PUBLIC_ROOT_DOMAIN} from '#/lib/constants'
 
 export const runtime = "edge";
 
@@ -13,12 +14,12 @@ export async function generateMetadata({
   params: { key: string };
 }) {
   if (params.key !== "github") {
-    const data = await getLinkViaEdge("dub.sh", params.key);
+    const data = await getLinkViaEdge(PUBLIC_ROOT_DOMAIN, params.key);
 
     // if the link doesn't exist in MySQL DB
     if (!data) {
       // check if it's an ephemeral demo link in Redis
-      const ephemeralLink = await redis.get(`dub.sh:${params.key}`);
+      const ephemeralLink = await redis.get(`${PUBLIC_ROOT_DOMAIN}:${params.key}`);
       if (!ephemeralLink) {
         return;
       }
@@ -29,16 +30,16 @@ export async function generateMetadata({
   }
 
   return constructMetadata({
-    title: `Stats for dub.sh/${params.key} – Dub`,
+    title: `Stats for ${PUBLIC_ROOT_DOMAIN}/${params.key} – Dub`,
     description: `Dub is an open-source link management tool for modern marketing teams to create, share, and track short links.`,
-    image: `https://dub.sh/api/og/stats?domain=dub.sh&key=${params.key}`,
+    image: `https://${PUBLIC_ROOT_DOMAIN}/api/og/stats?domain=${PUBLIC_ROOT_DOMAIN}&key=${params.key}`,
   });
 }
 
 export async function generateStaticParams() {
   return [
     {
-      domain: "dub.sh",
+      domain: PUBLIC_ROOT_DOMAIN,
       key: "github",
     },
   ];
@@ -50,9 +51,9 @@ export default async function StatsPage({
   params: { key: string };
 }) {
   if (params.key !== "github") {
-    const data = await getLinkViaEdge("dub.sh", params.key);
+    const data = await getLinkViaEdge(PUBLIC_ROOT_DOMAIN, params.key);
     if (!data) {
-      const ephemeralLink = await redis.get(`dub.sh:${params.key}`);
+      const ephemeralLink = await redis.get(`${PUBLIC_ROOT_DOMAIN}:${params.key}`);
       if (!ephemeralLink) {
         notFound();
       }
@@ -64,7 +65,7 @@ export default async function StatsPage({
   return (
     <div className="bg-gray-50">
       <Suspense fallback={<div className="h-screen w-full bg-gray-50" />}>
-        <Stats staticDomain="dub.sh" />
+        <Stats staticDomain={PUBLIC_ROOT_DOMAIN} />
       </Suspense>
     </div>
   );

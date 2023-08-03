@@ -16,7 +16,7 @@ import { ModalContext } from "#/ui/modal-provider";
 import Badge from "#/ui/badge";
 import { linkConstructor } from "#/lib/utils";
 import { HelpCircle } from "lucide-react";
-import { HOME_DOMAIN } from "#/lib/constants";
+import {HOME_DOMAIN, PUBLIC_ROOT_DOMAIN} from '#/lib/constants'
 import MaxWidthWrapper from "@/components/shared/max-width-wrapper";
 
 const NavTabs = dynamic(() => import("./nav-tabs"), {
@@ -112,7 +112,7 @@ export default function AppLayout({
                       className="text-sm font-medium"
                     >
                       {linkConstructor({
-                        domain: domain || "dub.sh",
+                        domain: domain || PUBLIC_ROOT_DOMAIN,
                         key,
                         pretty: true,
                       })}

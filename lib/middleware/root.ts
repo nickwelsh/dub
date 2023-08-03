@@ -4,7 +4,7 @@ import { recordClick } from "#/lib/tinybird";
 import { parse } from "./utils";
 import { RootDomainProps } from "../types";
 import { isHomeHostname } from "../utils";
-import { REDIRECT_HEADERS } from "../constants";
+import {PUBLIC_ROOT_DOMAIN, REDIRECT_HEADERS} from '../constants'
 
 export default async function RootMiddleware(
   req: NextRequest,
@@ -17,7 +17,7 @@ export default async function RootMiddleware(
   }
 
   if (isHomeHostname(domain)) {
-    return NextResponse.rewrite(new URL(`/dub.sh`, req.url));
+    return NextResponse.rewrite(new URL(`/${PUBLIC_ROOT_DOMAIN}`, req.url));
   } else {
     ev.waitUntil(recordClick(domain, req)); // record clicks on root page (if domain is not dub.sh)
 

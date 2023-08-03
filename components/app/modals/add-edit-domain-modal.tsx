@@ -18,7 +18,7 @@ import { DomainProps } from "#/lib/types";
 import Tooltip, { TooltipContent } from "#/ui/tooltip";
 import useProject from "#/lib/swr/use-project";
 import { AnimatePresence, motion } from "framer-motion";
-import { SWIPE_REVEAL_ANIMATION_SETTINGS } from "#/lib/constants";
+import {PUBLIC_ROOT_DOMAIN, SUPPORT_EMAIL, SWIPE_REVEAL_ANIMATION_SETTINGS} from '#/lib/constants'
 import Switch from "#/ui/switch";
 import Button from "#/ui/button";
 import { toast } from "sonner";
@@ -218,7 +218,7 @@ function AddEditDomainModal({
                     ? "border-red-300 pr-10 text-red-900 placeholder-red-300 focus:border-red-500 focus:ring-red-500"
                     : "border-gray-300 text-gray-900 placeholder-gray-300 focus:border-gray-500 focus:ring-gray-500"
                 } block w-full rounded-md focus:outline-none sm:text-sm`}
-                placeholder="dub.sh"
+                placeholder={PUBLIC_ROOT_DOMAIN}
                 value={domain}
                 onChange={(e) => {
                   setDomainError(null);
@@ -243,7 +243,7 @@ function AddEditDomainModal({
                 Domain is already in use.{" "}
                 <a
                   className="underline"
-                  href="mailto:support@dub.sh?subject=My Domain Is Already In Use"
+                  href={`mailto:${SUPPORT_EMAIL}?subject=My Domain Is Already In Use`}
                 >
                   Contact us
                 </a>{" "}

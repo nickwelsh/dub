@@ -4,7 +4,7 @@ import Background from "#/ui/home/background";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useDebounce } from "use-debounce";
-import { STAGGER_CHILD_VARIANTS } from "#/lib/constants";
+import {PUBLIC_ROOT_DOMAIN, STAGGER_CHILD_VARIANTS} from '#/lib/constants'
 import Spline from "@splinetool/react-spline";
 import { InlineSnippet } from "@/components/app/domains/domain-configuration";
 import { useParams } from "next/navigation";
@@ -65,7 +65,7 @@ export default function PlaceholderContent() {
             <InlineSnippet>{domain}</InlineSnippet> is a custom domain on{" "}
             <a
               className="bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text font-semibold text-transparent decoration-rose-600 hover:underline"
-              href="https://dub.sh"
+              href={`https://${PUBLIC_ROOT_DOMAIN}`}
               onClick={() =>
                 va.track("Referred from custom domain", {
                   domain,
@@ -80,7 +80,7 @@ export default function PlaceholderContent() {
           </motion.p>
           <motion.a
             variants={STAGGER_CHILD_VARIANTS}
-            href="https://dub.sh"
+            href={`https://${PUBLIC_ROOT_DOMAIN}`}
             onClick={() =>
               va.track("Referred from custom domain", {
                 domain,

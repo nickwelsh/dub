@@ -5,6 +5,7 @@ import { LinkProps } from "#/lib/types";
 import { getDomainWithoutWWW } from "#/lib/utils";
 import { useMemo } from "react";
 import { useDebounce } from "use-debounce";
+import {PUBLIC_ROOT_DOMAIN} from '#/lib/constants'
 
 export default function Preview({
   data,
@@ -16,7 +17,7 @@ export default function Preview({
   const { title, description, image, url, password } = data;
   const [debouncedUrl] = useDebounce(url, 500);
   const hostname = useMemo(() => {
-    if (password) return "dub.sh";
+    if (password) return PUBLIC_ROOT_DOMAIN;
     return getDomainWithoutWWW(debouncedUrl);
   }, [password, debouncedUrl]);
 

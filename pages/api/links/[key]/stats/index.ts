@@ -1,5 +1,6 @@
 import { withLinksAuth } from "#/lib/auth";
 import prisma from "#/lib/prisma";
+import {PUBLIC_ROOT_DOMAIN} from '#/lib/constants'
 
 export default withLinksAuth(async (req, res, _session, _project, domain) => {
   const { key } = req.query as {
@@ -11,7 +12,7 @@ export default withLinksAuth(async (req, res, _session, _project, domain) => {
     const link = await prisma.link.findUnique({
       where: {
         domain_key: {
-          domain: domain || "dub.sh",
+          domain: domain || PUBLIC_ROOT_DOMAIN,
           key,
         },
       },
@@ -28,7 +29,7 @@ export default withLinksAuth(async (req, res, _session, _project, domain) => {
     const response = await prisma.link.update({
       where: {
         domain_key: {
-          domain: domain || "dub.sh",
+          domain: domain || PUBLIC_ROOT_DOMAIN,
           key,
         },
       },

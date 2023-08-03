@@ -1,5 +1,5 @@
 import { NextFetchEvent, NextRequest, NextResponse } from "next/server";
-import { APP_HOSTNAMES, DEFAULT_REDIRECTS } from "#/lib/constants";
+import {APP_HOSTNAMES, DEFAULT_REDIRECTS, PUBLIC_ROOT_DOMAIN} from '#/lib/constants'
 import {
   AppMiddleware,
   ApiMiddleware,
@@ -34,12 +34,12 @@ export default async function middleware(req: NextRequest, ev: NextFetchEvent) {
   }
 
   // for API (api.dub.sh and api.localhost:3000)
-  if (domain === "api.dub.sh" || domain === "api.localhost:3000") {
+  if (domain === `api.${PUBLIC_ROOT_DOMAIN}` || domain === "api.localhost:3000") {
     return ApiMiddleware(req);
   }
 
   // for Admin (admin.dub.sh and admin.localhost:3000)
-  if (domain === "admin.dub.sh" || domain === "admin.localhost:3000") {
+  if (domain === `admin.${PUBLIC_ROOT_DOMAIN}` || domain === "admin.localhost:3000") {
     return AdminMiddleware(req);
   }
 
@@ -53,7 +53,7 @@ export default async function middleware(req: NextRequest, ev: NextFetchEvent) {
     return RootMiddleware(req, ev);
   }
 
-  if (domain === "dub.sh") {
+  if (domain === `${PUBLIC_ROOT_DOMAIN}`) {
     if (DEFAULT_REDIRECTS[key]) {
       return NextResponse.redirect(DEFAULT_REDIRECTS[key]);
     }

@@ -1,5 +1,6 @@
 import { withLinksAuth } from "#/lib/auth";
 import { getStats, IntervalProps } from "#/lib/stats";
+import {PUBLIC_ROOT_DOMAIN} from '#/lib/constants'
 
 export default withLinksAuth(
   async (req, res, _session, project, domain) => {
@@ -19,7 +20,7 @@ export default withLinksAuth(
       }
 
       const response = await getStats({
-        domain: domain || "dub.sh",
+        domain: domain || PUBLIC_ROOT_DOMAIN,
         key,
         endpoint,
         interval,

@@ -6,6 +6,7 @@ import useDomains from "#/lib/swr/use-domains";
 import useLinksCount from "#/lib/swr/use-links-count";
 import useUsers from "#/lib/swr/use-users";
 import Badge from "#/ui/badge";
+import {PUBLIC_ROOT_DOMAIN} from '#/lib/constants'
 
 const TabsHelper = (router: NextRouter): { name: string; href: string }[] => {
   const { slug, domain, key } = router.query as {
@@ -30,7 +31,7 @@ const TabsHelper = (router: NextRouter): { name: string; href: string }[] => {
   // home page (e.g. app.dub.sh, app.dub.sh/settings)
   return [
     { name: "Projects", href: `/` },
-    { name: "Dub.sh Links", href: `/links` },
+    { name: `{PUBLIC_ROOT_DOMAIN.charAt(0).toUpperCase()}{PUBLIC_ROOT_DOMAIN.slice(1)} Links`, href: `/links` },
     { name: "Settings", href: `/settings` },
   ];
 };

@@ -1,5 +1,5 @@
 import cloudinary from "cloudinary";
-import { DEFAULT_REDIRECTS } from "#/lib/constants";
+import {DEFAULT_REDIRECTS, PUBLIC_ROOT_DOMAIN} from '#/lib/constants'
 import prisma from "#/lib/prisma";
 import { LinkProps } from "#/lib/types";
 import { redis } from "#/lib/upstash";
@@ -151,7 +151,7 @@ export async function getRandomKey(domain: string): Promise<string> {
 
 export async function checkIfKeyExists(domain: string, key: string) {
   if (
-    domain === "dub.sh" &&
+    domain === PUBLIC_ROOT_DOMAIN &&
     ((await isReservedKey(key)) || DEFAULT_REDIRECTS[key])
   ) {
     return true; // reserved keys for dub.sh
@@ -398,7 +398,7 @@ export async function deleteUserLinks(userId: string) {
   const links = await prisma.link.findMany({
     where: {
       userId,
-      domain: "dub.sh",
+      domain: PUBLIC_ROOT_DOMAIN,
     },
     select: {
       key: true,
@@ -407,7 +407,7 @@ export async function deleteUserLinks(userId: string) {
   });
   const pipeline = redis.pipeline();
   links.forEach(({ key }) => {
-    pipeline.del(`dub.sh:${key}`);
+    pipeline.del(`${PUBLIC_ROOT_DOMAIN}:${key}`);
   });
   const [deleteRedis, deleteCloudinary, deletePrisma] =
     await Promise.allSettled([
@@ -415,7 +415,7 @@ export async function deleteUserLinks(userId: string) {
       // remove all images from cloudinary
       ...links.map(({ key, proxy }) =>
         proxy
-          ? cloudinary.v2.uploader.destroy(`dub.sh/${key}`, {
+          ? cloudinary.v2.uploader.destroy(`${PUBLIC_ROOT_DOMAIN}/${key}`, {
               invalidate: true,
             })
           : Promise.resolve(),
@@ -423,7 +423,7 @@ export async function deleteUserLinks(userId: string) {
       prisma.link.deleteMany({
         where: {
           userId,
-          domain: "dub.sh",
+          domain: PUBLIC_ROOT_DOMAIN,
         },
       }),
     ]);

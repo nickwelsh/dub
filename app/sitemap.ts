@@ -8,11 +8,12 @@ import {
 } from "contentlayer/generated";
 import { isHomeHostname } from "#/lib/utils";
 import { BLOG_CATEGORIES, HELP_CATEGORIES } from "#/lib/constants/content";
+import {PUBLIC_ROOT_DOMAIN} from '#/lib/constants'
 
 export default async function Sitemap() {
   const headersList = headers();
   let domain = headersList.get("host") as string;
-  if (isHomeHostname(domain)) domain = "dub.sh";
+  if (isHomeHostname(domain)) domain = PUBLIC_ROOT_DOMAIN;
 
   const links = await prisma.link.findMany({
     where: {
@@ -34,7 +35,7 @@ export default async function Sitemap() {
       url: `https://${domain}`,
       lastModified: new Date(),
     },
-    ...(domain === "dub.sh"
+    ...(domain === PUBLIC_ROOT_DOMAIN
       ? [
           {
             url: `https://${domain}/pricing`,

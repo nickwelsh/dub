@@ -4,6 +4,7 @@ import prisma from "#/lib/prisma";
 import { LinkProps, PlanProps, ProjectProps, UserProps } from "#/lib/types";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import { createHash } from "crypto";
+import {PUBLIC_ROOT_DOMAIN} from '#/lib/constants'
 
 export interface Session {
   user: {
@@ -241,8 +242,8 @@ const withLinksAuth =
       // prevent domain from being query injected by
       // making sure that all instances of `domain` are `dub.sh`
       if (
-        (domain && domain !== "dub.sh") ||
-        (req.body.domain && req.body.domain !== "dub.sh")
+        (domain && domain !== PUBLIC_ROOT_DOMAIN) ||
+        (req.body.domain && req.body.domain !== PUBLIC_ROOT_DOMAIN)
       ) {
         return res.status(403).end("Unauthorized: Invalid domain.");
       }
@@ -317,7 +318,7 @@ const withLinksAuth =
         (await prisma.link.findUnique({
           where: {
             domain_key: {
-              domain: domain || "dub.sh",
+              domain: domain || PUBLIC_ROOT_DOMAIN,
               key,
             },
           },

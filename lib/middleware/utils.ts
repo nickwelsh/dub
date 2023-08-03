@@ -1,10 +1,11 @@
 import { NextRequest } from "next/server";
 import { isHomeHostname } from "../utils";
+import {PUBLIC_ROOT_DOMAIN} from '#/lib/constants'
 
 export const parse = (req: NextRequest) => {
   let domain = req.headers.get("host") as string;
   domain = domain.replace("www.", ""); // remove www. from domain
-  if (isHomeHostname(domain)) domain = "dub.sh"; // if domain is a home hostname, set it to dub.sh
+  if (isHomeHostname(domain)) domain = PUBLIC_ROOT_DOMAIN; // if domain is a home hostname, set it to dub.sh
 
   // path is the path of the URL (e.g. dub.sh/stats/github -> /stats/github)
   const path = req.nextUrl.pathname;

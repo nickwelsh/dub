@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { DomainVerificationStatusProps } from "#/lib/types";
 import { getSubdomain } from "#/lib/utils";
+import {PUBLIC_ROOT_DOMAIN} from '#/lib/constants'
 
 export const InlineSnippet = ({ children }: { children: string }) => {
   return (
@@ -115,7 +116,7 @@ export default function DomainConfiguration({
           <div>
             <p className="text-sm font-bold">Value</p>
             <p className="mt-2 font-mono text-sm">
-              {recordType === "A" ? `76.76.21.21` : `cname.dub.sh`}
+              {recordType === "A" ? `76.76.21.21` : `cname.${PUBLIC_ROOT_DOMAIN}`}
             </p>
           </div>
           <div>

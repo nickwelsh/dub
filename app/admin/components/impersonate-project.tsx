@@ -7,6 +7,7 @@ import { getProjectOwner } from "../actions";
 import { useState } from "react";
 import { toast } from "sonner";
 import { Copy, Tick } from "@/components/shared/icons";
+import {PUBLIC_ROOT_DOMAIN} from '#/lib/constants'
 
 export default function ImpersonateProject() {
   const [data, setData] = useState<{
@@ -71,7 +72,7 @@ const Form = () => {
   return (
     <div className="relative flex w-full rounded-md shadow-sm">
       <span className="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-5 text-gray-500 sm:text-sm">
-        app.dub.sh
+        app.${PUBLIC_ROOT_DOMAIN}
       </span>
       <input
         name="slug"

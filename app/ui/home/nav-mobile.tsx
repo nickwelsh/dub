@@ -1,6 +1,6 @@
 "use client";
 
-import { APP_DOMAIN } from "#/lib/constants";
+import {APP_DOMAIN, PUBLIC_ROOT_DOMAIN} from '#/lib/constants'
 import { motion, useCycle } from "framer-motion";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -28,7 +28,7 @@ const sidebar = {
 };
 
 export default function MobileNav() {
-  const { domain = "dub.sh" } = useParams() as { domain: string };
+  const { domain = PUBLIC_ROOT_DOMAIN } = useParams() as { domain: string };
 
   const [isOpen, toggleOpen] = useCycle(false, true);
   const containerRef = useRef(null);
@@ -60,9 +60,9 @@ export default function MobileNav() {
             <MenuItem>
               <Link
                 href={
-                  domain === "dub.sh"
+                  domain === PUBLIC_ROOT_DOMAIN
                     ? `/${slug}`
-                    : `https://dub.sh/${slug}?utm_source=${domain}&utm_medium=referral&utm_campaign=custom-domain`
+                    : `https://${PUBLIC_ROOT_DOMAIN}/${slug}?utm_source=${domain}&utm_medium=referral&utm_campaign=custom-domain`
                 }
                 onClick={() => toggleOpen()}
                 className="flex w-full font-semibold capitalize"

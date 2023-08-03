@@ -9,6 +9,7 @@ import BlurImage from "#/ui/blur-image";
 import Author from "#/ui/content/author";
 import { Facebook, LinkedIn, Twitter } from "@/components/shared/icons";
 import MaxWidthWrapper from "@/components/shared/max-width-wrapper";
+import {PUBLIC_ROOT_DOMAIN} from '#/lib/constants'
 
 export async function generateStaticParams() {
   return allChangelogPosts.map((post) => ({
@@ -89,7 +90,7 @@ export default async function ChangelogPost({
           <Author username={post.author} />
           <div className="flex items-center space-x-6">
             <Link
-              href={`https://twitter.com/intent/tweet?text=${post.title}&url=https://dub.sh/changelog/${post.slug}&via=${post.author}`}
+              href={`https://twitter.com/intent/tweet?text=${post.title}&url=https://${PUBLIC_ROOT_DOMAIN}/changelog/${post.slug}&via=${post.author}`}
               target="_blank"
               rel="noopener noreferrer"
               className="transition-all hover:scale-110"
@@ -98,7 +99,7 @@ export default async function ChangelogPost({
             </Link>
             <Link
               href={`
-            http://www.linkedin.com/shareArticle?mini=true&url=https://dub.sh/changelog/${post.slug}`}
+            http://www.linkedin.com/shareArticle?mini=true&url=https://${PUBLIC_ROOT_DOMAIN}/changelog/${post.slug}`}
               target="_blank"
               rel="noopener noreferrer"
               className="transition-all hover:scale-110"
@@ -106,7 +107,7 @@ export default async function ChangelogPost({
               <LinkedIn className="h-6 w-6" fill="black" />
             </Link>
             <Link
-              href={`https://www.facebook.com/sharer/sharer.php?u=https://dub.sh/changelog/${post.slug}`}
+              href={`https://www.facebook.com/sharer/sharer.php?u=https://${PUBLIC_ROOT_DOMAIN}/changelog/${post.slug}`}
               target="_blank"
               rel="noopener noreferrer"
               className="transition-all hover:scale-110"

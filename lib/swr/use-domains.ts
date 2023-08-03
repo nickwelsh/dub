@@ -3,6 +3,7 @@ import { useMemo } from "react";
 import useSWR from "swr";
 import { DomainProps } from "#/lib/types";
 import { fetcher } from "#/lib/utils";
+import {PUBLIC_ROOT_DOMAIN} from '#/lib/constants'
 
 export default function useDomains({ domain }: { domain?: string } = {}) {
   const router = useRouter();
@@ -25,10 +26,10 @@ export default function useDomains({ domain }: { domain?: string } = {}) {
         ? data
         : ([
             {
-              slug: "dub.sh",
+              slug: PUBLIC_ROOT_DOMAIN,
               verified: true,
               primary: true,
-              target: "https://dub.sh",
+              target: `https://${PUBLIC_ROOT_DOMAIN}`,
               type: "redirect",
             },
           ] as DomainProps[]);

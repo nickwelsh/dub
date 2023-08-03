@@ -6,6 +6,7 @@ import Feedback from "./feedback";
 import Locations from "./locations";
 import Referer from "./referer";
 import Toggle from "./toggle";
+import {PUBLIC_ROOT_DOMAIN} from '#/lib/constants'
 
 export const StatsContext = createContext<{
   basePath: string;
@@ -64,7 +65,7 @@ export default function Stats({ staticDomain }: { staticDomain?: string }) {
     } else if (key && router.asPath.startsWith("/links")) {
       return {
         basePath: `/links/${encodeURIComponent(key)}`,
-        domain: "dub.sh",
+        domain: PUBLIC_ROOT_DOMAIN,
         endpoint: `/api/links/${encodeURIComponent(key)}/stats`,
       };
     }

@@ -5,7 +5,7 @@ import { useParams, useSelectedLayoutSegment } from "next/navigation";
 import useScroll from "#/lib/hooks/use-scroll";
 import { cn } from "#/lib/utils";
 import MaxWidthWrapper from "@/components/shared/max-width-wrapper";
-import { APP_DOMAIN, SHOW_BACKGROUND_SEGMENTS } from "#/lib/constants";
+import {APP_DOMAIN, PUBLIC_ROOT_DOMAIN, SHOW_BACKGROUND_SEGMENTS} from '#/lib/constants'
 import va from "@vercel/analytics";
 import { LogoType } from "#/ui/icons";
 import { useSession } from "next-auth/react";
@@ -30,7 +30,7 @@ export const navItems = [
 ];
 
 export default function Nav() {
-  const { domain = "dub.sh" } = useParams() as { domain: string };
+  const { domain = PUBLIC_ROOT_DOMAIN } = useParams() as { domain: string };
   const scrolled = useScroll(80);
   const selectedLayout = useSelectedLayoutSegment();
   const helpCenter = selectedLayout === "help";
@@ -54,8 +54,8 @@ export default function Nav() {
         <div className="flex h-14 items-center justify-between">
           <div className="flex items-center space-x-4">
             <Link
-              href={domain === "dub.sh" ? "/" : `https://dub.sh`}
-              {...(domain !== "dub.sh" && {
+              href={domain === PUBLIC_ROOT_DOMAIN ? "/" : `https://${PUBLIC_ROOT_DOMAIN}`}
+              {...(domain !== PUBLIC_ROOT_DOMAIN && {
                 onClick: () => {
                   va.track("Referred from custom domain", {
                     domain,
@@ -83,11 +83,11 @@ export default function Nav() {
                     id={`nav-${slug}`}
                     key={slug}
                     href={
-                      domain === "dub.sh"
+                      domain === PUBLIC_ROOT_DOMAIN
                         ? `/${slug}`
-                        : `https://dub.sh/${slug}`
+                        : `https://${PUBLIC_ROOT_DOMAIN}/${slug}`
                     }
-                    {...(domain !== "dub.sh" && {
+                    {...(domain !== PUBLIC_ROOT_DOMAIN && {
                       onClick: () => {
                         va.track("Referred from custom domain", {
                           domain,
@@ -121,7 +121,7 @@ export default function Nav() {
               <>
                 <Link
                   href={`${APP_DOMAIN}/login`}
-                  {...(domain !== "dub.sh" && {
+                  {...(domain !== PUBLIC_ROOT_DOMAIN && {
                     onClick: () => {
                       va.track("Referred from custom domain", {
                         domain,
@@ -135,7 +135,7 @@ export default function Nav() {
                 </Link>
                 <Link
                   href={`${APP_DOMAIN}/register`}
-                  {...(domain !== "dub.sh" && {
+                  {...(domain !== PUBLIC_ROOT_DOMAIN && {
                     onClick: () => {
                       va.track("Referred from custom domain", {
                         domain,

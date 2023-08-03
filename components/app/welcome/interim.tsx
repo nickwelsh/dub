@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { motion } from "framer-motion";
 import BlurImage from "#/ui/blur-image";
 import { Logo } from "#/ui/icons";
-import { STAGGER_CHILD_VARIANTS } from "#/lib/constants";
+import {PUBLIC_ROOT_DOMAIN, STAGGER_CHILD_VARIANTS} from '#/lib/constants'
 
 export default function Interim() {
   const router = useRouter();
@@ -44,9 +44,9 @@ export default function Interim() {
           className="text-gray-500 underline transition-colors hover:text-gray-700"
           target="_blank"
           rel="noreferrer"
-          href="https://dub.sh"
+          href={`https://${PUBLIC_ROOT_DOMAIN}`}
         >
-          dub.sh
+          ${PUBLIC_ROOT_DOMAIN}
         </a>{" "}
         domain to create short links.
       </motion.p>

@@ -1,7 +1,7 @@
 "use server";
 import { deleteUserLinks } from "#/lib/api/links";
 import { hashToken } from "#/lib/auth";
-import { DUB_PROJECT_ID } from "#/lib/constants";
+import {DUB_PROJECT_ID, PUBLIC_ROOT_DOMAIN} from '#/lib/constants'
 import prisma from "#/lib/prisma";
 import { getDomainWithoutWWW } from "#/lib/utils";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
@@ -125,7 +125,7 @@ export async function getUserByKey(data: FormData) {
     where: {
       links: {
         some: {
-          domain: "dub.sh",
+          domain: PUBLIC_ROOT_DOMAIN,
           key,
         },
       },
@@ -134,7 +134,7 @@ export async function getUserByKey(data: FormData) {
       email: true,
       links: {
         where: {
-          domain: "dub.sh",
+          domain: PUBLIC_ROOT_DOMAIN,
         },
         select: {
           key: true,

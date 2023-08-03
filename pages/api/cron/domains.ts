@@ -8,6 +8,7 @@ import {
 } from "#/lib/api/domains";
 import prisma from "#/lib/prisma";
 import { log } from "#/lib/utils";
+import {PUBLIC_ROOT_DOMAIN} from '#/lib/constants'
 
 /**
  * Cron to check if domains are verified.
@@ -24,7 +25,7 @@ async function handler(_req: NextApiRequest, res: NextApiResponse) {
         slug: {
           // exclude domains that belong to us
           notIn: [
-            "dub.sh",
+            PUBLIC_ROOT_DOMAIN,
             "stey.me",
             "steven.yt",
             "vercel.fyi",

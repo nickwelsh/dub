@@ -1,10 +1,12 @@
-export const PUBLIC_ROOT_DOMAIN = process.env.PUBLIC_ROOT_DOMAIN ? process.env.PUBLIC_ROOT_DOMAIN : "dub.sh";
+export const PUBLIC_ROOT_DOMAIN = process.env.PUBLIC_ROOT_DOMAIN ? process.env.PUBLIC_ROOT_DOMAIN : "nmp.llc";
 export const RESEND_EMAILS = {
   feedbackFrom: process.env.RESEND_EMAILS_FEEDBACK_FROM ? process.env.RESEND_EMAILS_FEEDBACK_FROM : `feedback@${PUBLIC_ROOT_DOMAIN}`,
   feedbackTo: process.env.RESEND_EMAILS_FEEDBACK_TO ? process.env.RESEND_EMAILS_FEEDBACK_TO : `steven@ship.${PUBLIC_ROOT_DOMAIN}`,
   system: process.env.RESEND_EMAILS_SYSTEM ? process.env.RESEND_EMAILS_SYSTEM : `system@${PUBLIC_ROOT_DOMAIN}`,
   marketing: process.env.RESEND_EMAILS_MARKETING ? process.env.RESEND_EMAILS_MARKETING : `marketing@${PUBLIC_ROOT_DOMAIN}`,
 }
+
+export const SUPPORT_EMAIL = process.env.SUPPORT_EMAIL ? process.env.SUPPORT_EMAIL : `support@${PUBLIC_ROOT_DOMAIN}`;
 
 export const LOCALHOST_GEO_DATA = {
   city: "San Francisco",
@@ -71,13 +73,13 @@ export const DEFAULT_REDIRECTS = {
   home: `https://${PUBLIC_ROOT_DOMAIN}}`,
   dub: `https://${PUBLIC_ROOT_DOMAIN}}`,
   signin: `https://app.${PUBLIC_ROOT_DOMAIN}/login`,
-  login: `https://a${PUBLIC_ROOT_DOMAIN}.llc/login`,
+  login: `https://app.${PUBLIC_ROOT_DOMAIN}.llc/login`,
   register: `https://app.${PUBLIC_ROOT_DOMAIN}/register`,
-  signup: `https://a${PUBLIC_ROOT_DOMAIN}.llc/register`,
+  signup: `https://app.${PUBLIC_ROOT_DOMAIN}.llc/register`,
   app: `https://app.${PUBLIC_ROOT_DOMAIN}`,
-  dashboard: `https://a${PUBLIC_ROOT_DOMAIN}.llc`,
+  dashboard: `https://app.${PUBLIC_ROOT_DOMAIN}.llc`,
   links: `https://app.${PUBLIC_ROOT_DOMAIN}/links`,
-  settings: `https://a${PUBLIC_ROOT_DOMAIN}.llc/settings`,
+  settings: `https://app.${PUBLIC_ROOT_DOMAIN}.llc/settings`,
   welcome: `https://app.${PUBLIC_ROOT_DOMAIN}/welcome`,
   slack: "https://dub.slack.com",
   discord: "https://twitter.com/dubdotsh", // placeholder for now
@@ -86,7 +88,7 @@ export const DEFAULT_REDIRECTS = {
 
 export const REDIRECT_HEADERS = {
   headers: {
-    "x-powered-by": "Dub.sh - Link management for modern marketing teams",
+    "x-powered-by": `${PUBLIC_ROOT_DOMAIN.charAt(0).toUpperCase()}${PUBLIC_ROOT_DOMAIN.slice(1)} - Link management for modern marketing teams`,
   },
 };
 

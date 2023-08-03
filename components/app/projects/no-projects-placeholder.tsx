@@ -2,6 +2,7 @@ import Link from "next/link";
 import BlurImage from "#/ui/blur-image";
 import { useContext } from "react";
 import { ModalContext } from "#/ui/modal-provider";
+import {PUBLIC_ROOT_DOMAIN} from '#/lib/constants'
 
 export default function NoProjectsPlaceholder() {
   const { setShowAddProjectModal } = useContext(ModalContext);
@@ -28,7 +29,7 @@ export default function NoProjectsPlaceholder() {
         href="/links"
         className="mt-3 text-sm font-medium text-gray-500 transition-all hover:text-gray-800 active:scale-95"
       >
-        Add a Dub.sh link instead
+        Add a {PUBLIC_ROOT_DOMAIN.charAt(0).toUpperCase()}{PUBLIC_ROOT_DOMAIN.slice(1)} link instead
       </Link>
     </div>
   );

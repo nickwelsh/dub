@@ -2,7 +2,7 @@ import { allChangelogPosts } from "contentlayer/generated";
 import { Github } from "@/components/shared/icons";
 import Link from "next/link";
 import { ExpandingArrow } from "../icons";
-import { APP_DOMAIN } from "#/lib/constants";
+import {APP_DOMAIN, PUBLIC_ROOT_DOMAIN} from '#/lib/constants'
 
 const Hero = () => {
   const latestChangelog = allChangelogPosts.sort(
@@ -44,7 +44,7 @@ const Hero = () => {
         </a>
         <a
           className="flex items-center justify-center space-x-2 rounded-full border border-gray-300 bg-white px-5 py-2 shadow-lg transition-all hover:border-gray-800"
-          href="https://dub.sh/github"
+          href={`https://${PUBLIC_ROOT_DOMAIN}/github`}
           target="_blank"
           rel="noreferrer"
         >

@@ -1,13 +1,14 @@
 import prisma from "#/lib/prisma";
 import { constructMetadata } from "#/lib/utils";
 import PlaceholderContent from "./placeholder";
+import {PUBLIC_ROOT_DOMAIN} from '#/lib/constants'
 
 export async function generateMetadata({
   params,
 }: {
   params: { domain: string };
 }) {
-  const title = `${params.domain.toUpperCase()} - A Dub.sh Custom Domain`;
+  const title = `${params.domain.toUpperCase()} - A ${PUBLIC_ROOT_DOMAIN.charAt(0).toUpperCase()}${PUBLIC_ROOT_DOMAIN.slice(1)} Custom Domain`;
   const description = `${params.domain.toUpperCase()} is a custom domain on Dub - an open-source link management tool for modern marketing teams to create, share, and track short links.`;
 
   return constructMetadata({
@@ -24,7 +25,7 @@ export async function generateStaticParams() {
             verified: true,
             target: null,
             NOT: {
-              slug: "dub.sh",
+              slug: PUBLIC_ROOT_DOMAIN,
             },
           },
           select: {

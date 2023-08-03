@@ -12,7 +12,7 @@ import {
   Tailwind,
   Text,
 } from "@react-email/components";
-import { DUB_LOGO, DUB_THUMBNAIL } from "../lib/constants";
+import {DUB_LOGO, DUB_THUMBNAIL, PUBLIC_ROOT_DOMAIN} from '../lib/constants'
 import Footer from "./components/footer";
 
 export default function WelcomeEmail({
@@ -58,16 +58,16 @@ export default function WelcomeEmail({
             <Text className="ml-1 text-sm leading-4 text-black">
               ◆ Create a{" "}
               <Link
-                href="https://app.dub.sh/links"
+                href={`https://app.${PUBLIC_ROOT_DOMAIN}/links`}
                 className="font-medium text-blue-600 no-underline"
               >
-                Dub.sh short link
+                {PUBLIC_ROOT_DOMAIN.charAt(0).toUpperCase()}{PUBLIC_ROOT_DOMAIN.slice(1)} short link
               </Link>
             </Text>
             <Text className="ml-1 text-sm leading-4 text-black">
               ◆ Create a{" "}
               <Link
-                href="https://app.dub.sh"
+                href={`https://app.${PUBLIC_ROOT_DOMAIN}`}
                 className="font-medium text-blue-600 no-underline"
               >
                 new project

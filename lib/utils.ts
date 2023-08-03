@@ -10,8 +10,8 @@ import {
   ccTLDs,
   SECOND_LEVEL_DOMAINS,
   HOME_HOSTNAMES,
-  HOME_DOMAIN,
-} from "./constants";
+  HOME_DOMAIN, PUBLIC_ROOT_DOMAIN
+} from './constants'
 import { toast } from "sonner";
 
 export function cn(...inputs: ClassValue[]) {
@@ -21,7 +21,7 @@ export function cn(...inputs: ClassValue[]) {
 export function constructMetadata({
   title = "Dub - Link Management for Modern Marketing Teams",
   description = "Dub is an open-source link management tool for modern marketing teams to create, share, and track short links.",
-  image = "https://dub.sh/_static/thumbnail.png",
+  image = `https://${PUBLIC_ROOT_DOMAIN}/_static/thumbnail.png`,
   icons = "/favicon.ico",
 }: {
   title?: string;
@@ -123,7 +123,7 @@ export const chunk = <T>(array: T[], chunk_size: number): T[][] => {
 
 export function linkConstructor({
   key,
-  domain = "dub.sh",
+  domain = PUBLIC_ROOT_DOMAIN,
   localhost,
   pretty,
   noDomain,

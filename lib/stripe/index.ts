@@ -1,11 +1,12 @@
 import Stripe from "stripe";
+import {PUBLIC_ROOT_DOMAIN} from '#/lib/constants'
 
 export const stripe = new Stripe(
   process.env.STRIPE_SECRET_KEY_LIVE ?? process.env.STRIPE_SECRET_KEY ?? "",
   {
     apiVersion: "2022-11-15",
     appInfo: {
-      name: "Dub.sh",
+      name: `${PUBLIC_ROOT_DOMAIN.charAt(0).toUpperCase()}${PUBLIC_ROOT_DOMAIN.slice(1)}`,
       version: "0.1.0",
     },
   },

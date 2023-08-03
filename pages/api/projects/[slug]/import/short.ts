@@ -4,6 +4,7 @@ import { qstash } from "#/lib/cron/utils";
 import prisma from "#/lib/prisma";
 import { ShortioDomainProps } from "#/lib/types";
 import { redis } from "#/lib/upstash";
+import {PUBLIC_ROOT_DOMAIN} from '#/lib/constants'
 
 export default withProjectAuth(async (req, res, project) => {
   // get Short.io domains and links count
@@ -84,9 +85,9 @@ export default withProjectAuth(async (req, res, project) => {
 
     const hostname =
       process.env.NEXT_PUBLIC_VERCEL_ENV === "production"
-        ? "https://app.dub.sh"
+        ? `https://app.${PUBLIC_ROOT_DOMAIN}`
         : process.env.NEXT_PUBLIC_VERCEL_ENV === "preview"
-        ? "https://preview.dub.sh"
+        ? `https://preview.${PUBLIC_ROOT_DOMAIN}`
         : process.env.NGROK_URL;
 
     const response = await Promise.all(
