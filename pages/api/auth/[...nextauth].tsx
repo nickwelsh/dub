@@ -78,7 +78,8 @@ export const authOptions: NextAuthOptions = {
       return true;
     },
     jwt: async ({ token, user, trigger }) => {
-      if (!token.email || (await isBlacklistedEmail(token.email))) {
+      // if (!token.email || (await isBlacklistedEmail(token.email))) {
+      if(!token.email) {
         return {};
       }
       if (user) {
