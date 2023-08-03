@@ -1,7 +1,7 @@
 import { nanoid } from "#/lib/utils";
 import { ReactElement, JSXElementConstructor } from "react";
 import { Resend } from "resend";
-import {PUBLIC_ROOT_DOMAIN} from '#/lib/constants'
+import {PUBLIC_ROOT_DOMAIN, RESEND_EMAILS} from '#/lib/constants'
 
 export const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -20,8 +20,8 @@ export const sendEmail = async ({
 }) => {
   return resend.emails.send({
     from: marketing
-      ? `Steven from Dub <steven@ship.${PUBLIC_ROOT_DOMAIN}>`
-      : `Dub <system@${PUBLIC_ROOT_DOMAIN}>`,
+      ? `Steven from Dub <${RESEND_EMAILS.marketing}>`
+      : `Dub <${RESEND_EMAILS.system}>`,
     to: test ? "delivered@resend.dev" : email,
     subject,
     react,

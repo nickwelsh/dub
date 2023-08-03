@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { ratelimit } from "#/lib/upstash";
 import { Resend } from "resend";
 import FeedbackEmail from "emails/feedback-email";
-import {PUBLIC_ROOT_DOMAIN} from '#/lib/constants'
+import {PUBLIC_ROOT_DOMAIN, RESEND_EMAILS} from '#/lib/constants'
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -25,8 +25,8 @@ export default async function handler(
     }
 
     const response = await resend.emails.send({
-      from: `feedback@${PUBLIC_ROOT_DOMAIN}`,
-      to: [`steven@${PUBLIC_ROOT_DOMAIN}`],
+      from: RESEND_EMAILS.feedbackFrom,
+      to: [RESEND_EMAILS.feedbackTo],
       ...(email && { reply_to: email }),
       subject: "🎉 New Feedback Received!",
       react: FeedbackEmail({

@@ -1,4 +1,10 @@
 export const PUBLIC_ROOT_DOMAIN = process.env.PUBLIC_ROOT_DOMAIN ? process.env.PUBLIC_ROOT_DOMAIN : "dub.sh";
+export const RESEND_EMAILS = {
+  feedbackFrom: process.env.RESEND_EMAILS_FEEDBACK_FROM ? process.env.RESEND_EMAILS_FEEDBACK_FROM : `feedback@${PUBLIC_ROOT_DOMAIN}`,
+  feedbackTo: process.env.RESEND_EMAILS_FEEDBACK_TO ? process.env.RESEND_EMAILS_FEEDBACK_TO : `steven@ship.${PUBLIC_ROOT_DOMAIN}`,
+  system: process.env.RESEND_EMAILS_SYSTEM ? process.env.RESEND_EMAILS_SYSTEM : `system@${PUBLIC_ROOT_DOMAIN}`,
+  marketing: process.env.RESEND_EMAILS_MARKETING ? process.env.RESEND_EMAILS_MARKETING : `marketing@${PUBLIC_ROOT_DOMAIN}`,
+}
 
 export const LOCALHOST_GEO_DATA = {
   city: "San Francisco",
