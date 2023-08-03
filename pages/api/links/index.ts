@@ -54,7 +54,8 @@ export default withLinksAuth(
         if (keyBlacklisted) {
           return res.status(422).end("Invalid key.");
         }
-        const domainBlacklisted = await isBlacklistedDomain(url);
+        // const domainBlacklisted = await isBlacklistedDomain(url);
+        const domainBlacklisted = false;
         if (domainBlacklisted) {
           return res.status(422).end("Invalid url.");
         }
