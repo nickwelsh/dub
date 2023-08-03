@@ -49,7 +49,8 @@ export default withLinksAuth(
         if (key.includes("/")) {
           return res.status(422).end("Key cannot contain '/'.");
         }
-        const keyBlacklisted = await isBlacklistedKey(key);
+        // const keyBlacklisted = await isBlacklistedKey(key);
+        const keyBlacklisted = false;
         if (keyBlacklisted) {
           return res.status(422).end("Invalid key.");
         }
