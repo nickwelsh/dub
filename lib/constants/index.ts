@@ -33,47 +33,47 @@ export const FADE_IN_ANIMATION_SETTINGS = {
 
 export const HOME_HOSTNAMES = new Set([
   // comment for better diffs
-  "dub.sh",
+  "nmp.llc",
   "localhost",
   "localhost:3000",
 ]);
 
 export const HOME_DOMAIN =
   process.env.NEXT_PUBLIC_VERCEL_ENV === "production"
-    ? "https://dub.sh"
+    ? "https://nmp.llc"
     : process.env.NEXT_PUBLIC_VERCEL_ENV === "preview"
     ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
     : "http://localhost:3000";
 
 export const APP_HOSTNAMES = new Set([
-  "app.dub.sh",
+  "app.nmp.llc",
   "app.localhost:3000",
   "app.localhost",
-  "preview.dub.sh",
+  "preview.nmp.llc",
 ]);
 
 export const APP_DOMAIN =
   process.env.NEXT_PUBLIC_VERCEL_ENV === "production"
-    ? "https://app.dub.sh"
+    ? "https://app.nmp.llc"
     : process.env.NEXT_PUBLIC_VERCEL_ENV === "preview"
-    ? "https://preview.dub.sh"
+    ? "https://preview.nmp.llc"
     : "http://app.localhost:3000";
 
 export const DEFAULT_REDIRECTS = {
-  home: "https://dub.sh",
-  dub: "https://dub.sh",
-  signin: "https://app.dub.sh/login",
-  login: "https://app.dub.sh/login",
-  register: "https://app.dub.sh/register",
-  signup: "https://app.dub.sh/register",
-  app: "https://app.dub.sh",
-  dashboard: "https://app.dub.sh",
-  links: "https://app.dub.sh/links",
-  settings: "https://app.dub.sh/settings",
-  welcome: "https://app.dub.sh/welcome",
+  home: "https://nmp.llc",
+  dub: "https://nmp.llc",
+  signin: "https://app.nmp.llc/login",
+  login: "https://app.nmp.llc/login",
+  register: "https://app.nmp.llc/register",
+  signup: "https://app.nmp.llc/register",
+  app: "https://app.nmp.llc",
+  dashboard: "https://app.nmp.llc",
+  links: "https://app.nmp.llc/links",
+  settings: "https://app.nmp.llc/settings",
+  welcome: "https://app.nmp.llc/welcome",
   slack: "https://dub.slack.com",
   discord: "https://twitter.com/dubdotsh", // placeholder for now
-  tags: "https://dub.sh/help/how-to-use-tags",
+  tags: "https://nmp.llc/help/how-to-use-tags",
 };
 
 export const REDIRECT_HEADERS = {
@@ -129,7 +129,7 @@ export const SPECIAL_APEX_DOMAINS = new Set([
 export const DEFAULT_LINK_PROPS = {
   key: "github",
   url: "https://github.com/steven-tey/dub",
-  domain: "dub.sh",
+  domain: "nmp.llc",
   archived: false,
   expiresAt: null,
   password: null,
