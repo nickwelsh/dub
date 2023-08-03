@@ -1,3 +1,5 @@
+export const PUBLIC_ROOT_DOMAIN = process.env.PUBLIC_ROOT_DOMAIN ? process.env.PUBLIC_ROOT_DOMAIN : "dub.sh";
+
 export const LOCALHOST_GEO_DATA = {
   city: "San Francisco",
   region: "CA",
@@ -33,47 +35,47 @@ export const FADE_IN_ANIMATION_SETTINGS = {
 
 export const HOME_HOSTNAMES = new Set([
   // comment for better diffs
-  "nmp.llc",
+  PUBLIC_ROOT_DOMAIN,
   "localhost",
   "localhost:3000",
 ]);
 
 export const HOME_DOMAIN =
   process.env.NEXT_PUBLIC_VERCEL_ENV === "production"
-    ? "https://nmp.llc"
+    ? `https://${PUBLIC_ROOT_DOMAIN}`
     : process.env.NEXT_PUBLIC_VERCEL_ENV === "preview"
     ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
     : "http://localhost:3000";
 
 export const APP_HOSTNAMES = new Set([
-  "app.nmp.llc",
+  `app.${PUBLIC_ROOT_DOMAIN}`,
   "app.localhost:3000",
   "app.localhost",
-  "preview.nmp.llc",
+  `preview.${PUBLIC_ROOT_DOMAIN}`,
 ]);
 
 export const APP_DOMAIN =
   process.env.NEXT_PUBLIC_VERCEL_ENV === "production"
-    ? "https://app.nmp.llc"
+    ? `https://app.${PUBLIC_ROOT_DOMAIN}`
     : process.env.NEXT_PUBLIC_VERCEL_ENV === "preview"
-    ? "https://preview.nmp.llc"
+    ? `https://preview.${PUBLIC_ROOT_DOMAIN}`
     : "http://app.localhost:3000";
 
 export const DEFAULT_REDIRECTS = {
-  home: "https://nmp.llc",
-  dub: "https://nmp.llc",
-  signin: "https://app.nmp.llc/login",
-  login: "https://app.nmp.llc/login",
-  register: "https://app.nmp.llc/register",
-  signup: "https://app.nmp.llc/register",
-  app: "https://app.nmp.llc",
-  dashboard: "https://app.nmp.llc",
-  links: "https://app.nmp.llc/links",
-  settings: "https://app.nmp.llc/settings",
-  welcome: "https://app.nmp.llc/welcome",
+  home: `https://${PUBLIC_ROOT_DOMAIN}}`,
+  dub: `https://${PUBLIC_ROOT_DOMAIN}}`,
+  signin: `https://app.${PUBLIC_ROOT_DOMAIN}/login`,
+  login: `https://a${PUBLIC_ROOT_DOMAIN}.llc/login`,
+  register: `https://app.${PUBLIC_ROOT_DOMAIN}/register`,
+  signup: `https://a${PUBLIC_ROOT_DOMAIN}.llc/register`,
+  app: `https://app.${PUBLIC_ROOT_DOMAIN}`,
+  dashboard: `https://a${PUBLIC_ROOT_DOMAIN}.llc`,
+  links: `https://app.${PUBLIC_ROOT_DOMAIN}/links`,
+  settings: `https://a${PUBLIC_ROOT_DOMAIN}.llc/settings`,
+  welcome: `https://app.${PUBLIC_ROOT_DOMAIN}/welcome`,
   slack: "https://dub.slack.com",
   discord: "https://twitter.com/dubdotsh", // placeholder for now
-  tags: "https://nmp.llc/help/how-to-use-tags",
+  tags: `https://${PUBLIC_ROOT_DOMAIN}/help/how-to-use-tags`,
 };
 
 export const REDIRECT_HEADERS = {
@@ -129,7 +131,7 @@ export const SPECIAL_APEX_DOMAINS = new Set([
 export const DEFAULT_LINK_PROPS = {
   key: "github",
   url: "https://github.com/steven-tey/dub",
-  domain: "nmp.llc",
+  domain: PUBLIC_ROOT_DOMAIN,
   archived: false,
   expiresAt: null,
   password: null,
