@@ -52,7 +52,8 @@ export const authOptions: NextAuthOptions = {
   },
   callbacks: {
     signIn: async ({ user, account, profile }) => {
-      if (!user.email || (await isBlacklistedEmail(user.email))) {
+      // if (!user.email || (await isBlacklistedEmail(user.email))) {
+      if(!user.email) {
         return false;
       }
       if (account?.provider === "google") {
